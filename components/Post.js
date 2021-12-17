@@ -36,7 +36,7 @@ function Post({id,post,postPage}) {
     const { data: session } = useSession();
     const [isOpen, SetIsOpen] = useRecoilState(modalState);
     const [comments, setcomments] = useState([]);
-    const [postId, setpostId] = useState(postIdState);
+    const [postId, setPostId] = useState(postIdState);
     const [liked, setliked] = useState(false);
     const [likes, setLikes] = useState([])
     const router = useRouter();
@@ -102,7 +102,7 @@ function Post({id,post,postPage}) {
                             onClick={(e) => {
                             e.stopPropagation();
                             setPostId(id);
-                            setIsOpen(true);
+                            SetIsOpen(true);
                             }}
                         >
                             <div className="icon group-hover:bg-[#1d9bf0] group-hover:bg-opacity-10">
