@@ -38,7 +38,7 @@ function Post({id,post,postPage}) {
     const [comments, setcomments] = useState([]);
     const [postId, setpostId] = useState(postIdState);
     const [liked, setliked] = useState(false);
-    const [likes, setlikes] = useState([])
+    const [likes, setLikes] = useState([])
     const router = useRouter();
     useEffect(
         () =>
@@ -47,7 +47,7 @@ function Post({id,post,postPage}) {
           ),
         [db, id]
       );
-    
+    //   check if a user has already liked a post and decrement it.
       useEffect(
         () =>
           setliked(
@@ -55,11 +55,12 @@ function Post({id,post,postPage}) {
           ),
         [likes]
       );
+    //   like post functionality
     const likePost = async()=>{
         if(liked){
-            await deleteDoc(doc(db,"post", id,"likes",session.user.uid))
+            await deleteDoc(doc(db,"posts", id,"likes",session.user.uid))
         }else{
-            await setDoc(doc(db,"post",id,"likes",session.user.uid),{
+            await setDoc(doc(db,"posts",id,"likes",session.user.uid),{
                 username: session.user.name,
             })
         }
